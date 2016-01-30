@@ -4,10 +4,12 @@ setwd("C:/Users/patelmon/Desktop/Coursera/GettingCleaningDataAssignment/UCI HAR 
 getwd()
 "C:/Users/patelmon/Desktop/Coursera/GettingCleaningDataAssignment/UCI HAR Dataset/test"
 setwd("C:/Users/patelmon/Desktop/Coursera/GettingCleaningDataAssignment/UCI HAR Dataset")
+
 #First load test data
 DATAsubject_test <- read.table("test/subject_test.txt", header = FALSE)
 DATAX_test <- read.table("test/X_test.txt", header = FALSE)
 DATAy_test <- read.table("test/y_test.txt", header = FALSE)
+
 #Second load training data
 DATAsubject_train <- read.table("train/subject_train.txt", header = FALSE)
 DATAX_train <- read.table("train/X_train.txt", header = FALSE)
@@ -49,14 +51,16 @@ DaTA<-subset(DATA,select=SelectedNames)
 #DEscriptive Activty Names from file Activity_Labels.txt
 ActivityLabels <- read.table("activity_labels.txt",head=FALSE)
 
-DataActivity <- as.character(DataActivity)
-DataActivity[DataActivity == 1] <- "Walking"
-DataActivity[DataActivity == 2] <- "Walking Upstairs"
-DataActivity[DataActivity == 3] <- "Walking Downstairs"
-DataActivity[DataActivity == 4] <- "Sitting"
-DataActivity[DataActivity == 5] <- "Standing"
-DataActivity[DataActivity == 6] <- "Laying"
-DataActivity <- as.factor(DataActivity)
+DaTA$Activity <- as.character(DaTA$Activity)
+DaTA$Activity[DaTA$Activity == 1] <- "Walking"
+DaTA$Activity[DaTA$Activity == 2] <- "Walking Upstairs"
+DaTA$Activity[DaTA$Activity == 3] <- "Walking Downstairs"
+DaTA$Activity[DaTA$Activity == 4] <- "Sitting"
+DaTA$Activity[DaTA$Activity == 5] <- "Standing"
+DaTA$Activity[DaTA$Activity == 6] <- "Laying"
+DaTA$Activity <- as.factor(DaTA$Activity)
+
+
 
 #Descriptive Labels 
 names(DaTA)<-gsub("^t", "time", names(DaTA))
